@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/cbtek/products/productivity/clock_n_work">
+        <file>imgWork.png</file>
+        <file>imgSettings.png</file>
+        <file>imgMeeting.png</file>
+        <file>imgLeave.png</file>
+        <file>imgBreak.png</file>
+        <file>imgArrive.png</file>
+        <file>imgExit.png</file>
+        <file>imgLogo.png</file>
+        <file>imgLogoSmall.png</file>
+        <file>imgWWW.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UIClockNWorkUpdater</class>
+ <widget class="QDialog" name="UIClockNWorkUpdater">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>498</width>
+    <height>801</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Clock-N-Go Task Updater</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#UIClockNWorkUpdater
+{
+	background:#525252;
+}
+QToolButton
+{
+	border:2px solid gray;
+	font-size:26px;
+	padding:8px;
+	background:#2222cc;
+	color:white;
+}
+
+QLabel
+{
+	color:white;
+}
+
+QToolButton::hover
+{
+	border-color:white;
+}
+
+#m_btnExit
+{
+	font-size:20px;
+	background:#cc2222;
+}
+#m_btnSettings
+{
+    font-size:20px;
+	background:#009900;
+}
+#m_btnView
+{
+    font-size:20px;
+	background:#666600;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="spacing">
+      <number>8</number>
+     </property>
+     <property name="leftMargin">
+      <number>4</number>
+     </property>
+     <property name="topMargin">
+      <number>4</number>
+     </property>
+     <property name="rightMargin">
+      <number>4</number>
+     </property>
+     <property name="bottomMargin">
+      <number>4</number>
+     </property>
+     <item>
+      <widget class="QToolButton" name="m_btnArrive">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Arrive to Work</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resx/resources.qrc">
+         <normaloff>:/cbtek/products/productivity/clock_n_work/imgArrive.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgArrive.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="m_btnWork">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Continue Task</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resx/resources.qrc">
+         <normaloff>:/cbtek/products/productivity/clock_n_work/imgWork.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgWork.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="m_btnMeet">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Go to Meeting</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resx/resources.qrc">
+         <normaloff>:/cbtek/products/productivity/clock_n_work/imgMeeting.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgMeeting.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="m_btnBreak">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Take a Break</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resx/resources.qrc">
+         <normaloff>:/cbtek/products/productivity/clock_n_work/imgBreak.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgBreak.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="m_btnLeave">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Leave Work</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../resx/resources.qrc">
+         <normaloff>:/cbtek/products/productivity/clock_n_work/imgLeave.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgLeave.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>48</width>
+         <height>48</height>
+        </size>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextUnderIcon</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QToolButton" name="m_btnSettings">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Settings</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resx/resources.qrc">
+           <normaloff>:/cbtek/products/productivity/clock_n_work/imgSettings.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgSettings.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="m_btnView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>View</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resx/resources.qrc">
+           <normaloff>:/cbtek/products/productivity/clock_n_work/imgWWW.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgWWW.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="m_btnExit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text">
+          <string>Exit</string>
+         </property>
+         <property name="icon">
+          <iconset resource="../resx/resources.qrc">
+           <normaloff>:/cbtek/products/productivity/clock_n_work/imgExit.png</normaloff>:/cbtek/products/productivity/clock_n_work/imgExit.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="toolButtonStyle">
+          <enum>Qt::ToolButtonTextUnderIcon</enum>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="../resx/resources.qrc">:/cbtek/products/productivity/clock_n_work/imgLogoSmall.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="m_lblStatus">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../resx/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
