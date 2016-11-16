@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Clock-N-Go Task Updater</string>
+   <string>Clock-N-Work Task Updater</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#UIClockNWorkUpdater

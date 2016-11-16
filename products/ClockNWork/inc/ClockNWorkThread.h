@@ -61,8 +61,7 @@ private:
     ClockNWorkSettings m_settings;
 
 signals:
-    void failed();
-    void timeout();
+    void failed(QString);
     void success();
 
 };

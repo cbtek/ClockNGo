@@ -72,6 +72,7 @@ UIClockNWorkUpdater::UIClockNWorkUpdater(QWidget *parent) :
     connect(m_ui->m_btnView,SIGNAL(clicked(bool)),this,SLOT(onView()));
     connect(&m_updateTimer,SIGNAL(timeout()),this,SLOT(onUpdate()));
     m_updateTimer.start(30000);
+    m_ui->m_lblStatus->setWordWrap(true);
 }
 
 UIClockNWorkUpdater::~UIClockNWorkUpdater()
@@ -389,7 +390,7 @@ void UIClockNWorkUpdater::onUploadFile()
     else m_ui->m_lblStatus->setText("<font style='color:#FFFFAA;font-size:18px;'>Waiting for connection...</font>");
 
     ClockNWorkThread * upload = new ClockNWorkThread(m_settings);
-    connect(upload,SIGNAL(failed()),this,SLOT(onUploadFailed()));
+    connect(upload,SIGNAL(failed(QString)),this,SLOT(onUploadFailed(QString)));
     connect(upload,SIGNAL(success()),this,SLOT(onUploadSuccess()));
     upload->start();
 
@@ -471,9 +472,9 @@ void UIClockNWorkUpdater::onUpdate()
     onUploadFile();
 }
 
-void UIClockNWorkUpdater::onUploadFailed()
+void UIClockNWorkUpdater::onUploadFailed(const QString & err)
 {
-    m_ui->m_lblStatus->setText("<font style='color:#FFAAAA;font-size:18px;'>No connection detected!</font>");
+    m_ui->m_lblStatus->setText("<font style='color:#FFAAAA;font-size:18px;'>"+err+"</font>");
 }
 
 void UIClockNWorkUpdater::onUploadSuccess()

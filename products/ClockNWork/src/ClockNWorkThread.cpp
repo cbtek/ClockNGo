@@ -55,21 +55,37 @@ ClockNWorkThread::ClockNWorkThread(const ClockNWorkSettings & settings)
 void ClockNWorkThread::run()
 {
     std::ostringstream command;
+    QProcess process;
     int retcode = 0;
+    bool isError = true;
+    QString output;
+
 #ifdef __WIN32
     std::ostringstream batch;
     batch << "echo y | pscp\\pscp.exe -q -batch -pw \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
     FileUtils::writeFileContents("windows_ssh_batch.bat",batch.str());
     command << "windows_ssh_batch.bat";
-    retcode = QProcess::execute(QString::fromStdString(command.str()));
+
+    process.start(QString::fromStdString(command.str()));
+    process.waitForFinished();
+
     FileUtils::deleteFile("windows_ssh_batch.bat");
 #else
     command << "sshpass -p \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" scp status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
-    retcode = QProcess::execute(QString::fromStdString(command.str()));
-#endif
-    if (retcode < 0)
+    process.start(QString::fromStdString(command.str()));
+#endif    
+    output = (process.readAllStandardError()+" "+process.readAllStandardOutput());
+    output.replace("\n"," ");
+    isError = (output.contains("error",Qt::CaseInsensitive) ||
+               output.contains("refused",Qt::CaseInsensitive) ||
+               output.contains("not recognized", Qt::CaseInsensitive));
+
+    std::string password = ClockNWorkManager::inst().getSessionSSHPassword();
+    output.replace(QString::fromStdString(password),"******");
+
+    if (isError)
     {
-        emit failed();
+        emit failed(output);
     }
     else emit success();
 

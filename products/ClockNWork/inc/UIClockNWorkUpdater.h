@@ -84,7 +84,7 @@ private slots:
      void onView();
      void onClose();
      void onUpdate();
-     void onUploadFailed();
+     void onUploadFailed(const QString &);
      void onUploadSuccess();
 };
 

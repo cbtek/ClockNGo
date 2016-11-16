@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Clock-N-Go Settings</string>
+   <string>Clock-N-Work Settings</string>
   </property>
   <property name="styleSheet">
    <string notr="true">#UIClockNWorkSettings
