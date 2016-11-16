@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>498</width>
-    <height>801</height>
+    <height>752</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,7 +21,7 @@
 QToolButton
 {
 	border:2px solid gray;
-	font-size:26px;
+	font-size:24px;
 	padding:8px;
 	background:#2222cc;
 	color:white;
@@ -54,10 +54,13 @@ QToolButton::hover
 }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <property name="verticalSpacing">
+    <number>1</number>
+   </property>
    <item row="1" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
      <property name="spacing">
-      <number>8</number>
+      <number>3</number>
      </property>
      <property name="leftMargin">
       <number>4</number>
@@ -225,7 +228,7 @@ QToolButton::hover
           </size>
          </property>
          <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
+          <enum>Qt::ToolButtonIconOnly</enum>
          </property>
         </widget>
        </item>
@@ -251,7 +254,7 @@ QToolButton::hover
           </size>
          </property>
          <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
+          <enum>Qt::ToolButtonIconOnly</enum>
          </property>
         </widget>
        </item>
@@ -277,7 +280,7 @@ QToolButton::hover
           </size>
          </property>
          <property name="toolButtonStyle">
-          <enum>Qt::ToolButtonTextUnderIcon</enum>
+          <enum>Qt::ToolButtonIconOnly</enum>
          </property>
         </widget>
        </item>
@@ -294,7 +297,7 @@ QToolButton::hover
       <pixmap resource="../resx/resources.qrc">:/cbtek/products/productivity/clock_n_work/imgLogoSmall.png</pixmap>
      </property>
      <property name="scaledContents">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
     </widget>
    </item>

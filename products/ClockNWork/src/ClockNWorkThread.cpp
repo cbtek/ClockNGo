@@ -32,10 +32,14 @@ SOFTWARE.
 
 #include "ClockNWorkManager.h"
 
+#include "utility/inc/FileUtils.hpp"
+
 #include <QProcess>
 
+#include <iostream>
 #include <sstream>
 
+using namespace cbtek::common::utility;
 namespace cbtek {
 namespace products {
 namespace productivity {
@@ -51,17 +55,24 @@ ClockNWorkThread::ClockNWorkThread(const ClockNWorkSettings & settings)
 void ClockNWorkThread::run()
 {
     std::ostringstream command;
+    int retcode = 0;
 #ifdef __WIN32
-    command << "sshpass -p \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" scp status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
+    std::ostringstream batch;
+    batch << "echo y | pscp\\pscp.exe -q -batch -pw \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
+    FileUtils::writeFileContents("windows_ssh_batch.bat",batch.str());
+    command << "windows_ssh_batch.bat";
+    retcode = QProcess::execute(QString::fromStdString(command.str()));
+    FileUtils::deleteFile("windows_ssh_batch.bat");
 #else
     command << "sshpass -p \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" scp status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
+    retcode = QProcess::execute(QString::fromStdString(command.str()));
 #endif
-    int retcode = QProcess::execute(QString::fromStdString(command.str()));
     if (retcode < 0)
     {
         emit failed();
     }
     else emit success();
+
 }
 
 ClockNWorkThread::~ClockNWorkThread()

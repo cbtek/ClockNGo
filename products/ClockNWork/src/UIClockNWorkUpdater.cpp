@@ -444,6 +444,11 @@ void UIClockNWorkUpdater::onSettings()
     settings.exec();
     onLoadConfig();
     this->show();
+    //Generate HTML
+    onGenerateHTML();
+
+    //Upload file to server
+    onUploadFile();
 }
 
 void UIClockNWorkUpdater::onView()

@@ -57,3 +57,11 @@ add_dependencies(${CURR_TARGET}
 target_link_libraries(${CURR_TARGET}
                       common_utils
                       Qt5::Widgets)
+
+
+
+# Copy templates folder to build directory
+# so that the exe can see them
+add_custom_command(TARGET ${CURR_TARGET} POST_BUILD
+               COMMAND ${CMAKE_COMMAND} -E copy_directory
+                   ${CMAKE_CURRENT_SOURCE_DIR}/contrib/windows_ssh $<TARGET_FILE_DIR:${CURR_TARGET}>/pscp)
