@@ -49,7 +49,10 @@ UIClockNWorkSettings::UIClockNWorkSettings(QWidget *parent) :
     m_ui->m_txtRemoteDBHost->setText(QString::fromStdString(settings.getSshRemoteDBHostName()));
     m_ui->m_txtRemoteDBPort->setText(QString::number(settings.getSshRemoteDBPort()));
     m_ui->m_txtLocalDBPort->setText(QString::number(settings.getSshLocalDBPort()));
-    m_ui->m_txtSSHPassword->setText(QString::fromStdString(ClockNWorkManager::inst().getSessionSSHPassword()));
+    m_ui->m_txtSshPassword->setText(QString::fromStdString(ClockNWorkManager::inst().getSessionSSHPassword()));
+    m_ui->m_txtSshRemoteUsername->setText(QString::fromStdString(settings.getSshUserName()));
+    m_ui->m_txtRemoteLocation->setText(QString::fromStdString(settings.getRemoteFilename()));
+
 }
 
 UIClockNWorkSettings::~UIClockNWorkSettings()
@@ -63,12 +66,14 @@ void UIClockNWorkSettings::onClose()
     QString sshDBHost = m_ui->m_txtRemoteDBHost->text();
     QString sshDBPort = m_ui->m_txtRemoteDBPort->text();
     QString sshLocalDBPort = m_ui->m_txtLocalDBPort->text();
-    QString sshPassword = m_ui->m_txtSSHPassword->text();
+    QString sshPassword = m_ui->m_txtSshPassword->text();
     ClockNWorkSettings settings;
     settings.setSshLocalDBPort(sshLocalDBPort.toInt());
     settings.setSshRemoteDBHostName(sshDBHost.toStdString());
     settings.setSshRemoteDBPort(sshDBPort.toInt());
     settings.setSshRemoteHostName(sshHost.toStdString());
+    settings.setSshUserName(m_ui->m_txtSshRemoteUsername->text().toStdString());
+    settings.setRemoteFilename(m_ui->m_txtRemoteLocation->text().toStdString());
     ClockNWorkManager::inst().writeSettings(settings);
     ClockNWorkManager::inst().setSessionSSHPassword(sshPassword.toStdString());
 

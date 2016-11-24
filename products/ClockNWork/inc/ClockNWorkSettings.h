@@ -95,13 +95,35 @@ public:
     */
     int getSshLocalDBPort() const;
 
+    /**
+     * @brief setRemoteFilename
+     * @param filename
+     */
+    void setRemoteFilename(const std::string & filename);
 
+    std::string getRemoteFilename() const;
+
+    /**
+     * @brief setSshUserName
+     * @param userName
+     */
+    void setSshUserName(const std::string & userName);
+
+    /**
+     * @brief getSshUserName
+     * @return
+     */
+    std::string getSshUserName() const;
 
     //! Destructor
     ~ClockNWorkSettings();	
+
+
 private:
     std::string m_sshRemoteHostName;
     std::string m_sshRemoteDBHostName;
+    std::string m_remoteFilename;
+    std::string m_sshUsername;
     int m_sshRemoteDBPort;
     int m_sshLocalDBPort;
 

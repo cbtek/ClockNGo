@@ -92,7 +92,7 @@ ClockNWorkEvent ClockNWorkManager::createEvent()
 
 ClockNWorkSettings ClockNWorkManager::getSettings() const
 {
-    std::string configFile = ".clockngo_config";
+    std::string configFile = ".clocknwork_config";
     ClockNWorkSettings settings;
     if (FileUtils::fileExists(configFile))
     {
@@ -126,6 +126,16 @@ ClockNWorkSettings ClockNWorkManager::getSettings() const
 
                     settings.setSshLocalDBPort(StringUtils::toInt(value));
                 }
+                else if (key == "SSHUSERNAME")
+                {
+
+                    settings.setSshUserName((value));
+                }
+                else if (key == "SSHFILENAME")
+                {
+
+                    settings.setRemoteFilename((value));
+                }
             }
         }
     }
@@ -139,7 +149,9 @@ void ClockNWorkManager::writeSettings(const ClockNWorkSettings &settings)
     out << "sshDBHost" <<c_SETTINGS_SEP<<settings.getSshRemoteDBHostName()<<std::endl;
     out << "sshDBPort" <<c_SETTINGS_SEP<<settings.getSshRemoteDBPort()<<std::endl;
     out << "sshLocalDBPort" <<c_SETTINGS_SEP<<settings.getSshLocalDBPort()<<std::endl;
-    FileUtils::writeFileContents(".clockngo_config",out.str());
+    out << "sshUsername" <<c_SETTINGS_SEP<<settings.getSshUserName()<<std::endl;
+    out << "sshFilename" <<c_SETTINGS_SEP<<settings.getRemoteFilename()<<std::endl;
+    FileUtils::writeFileContents(".clocknwork_config",out.str());
 }
 
 ClockNWorkEvent ClockNWorkManager::getEvent(const std::string &filename) const

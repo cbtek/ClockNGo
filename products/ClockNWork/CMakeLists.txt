@@ -60,7 +60,7 @@ target_link_libraries(${CURR_TARGET}
 
 
 
-# Copy templates folder to build directory
+# Copy windows_ssh folder to bin directory
 # so that the exe can see them
 add_custom_command(TARGET ${CURR_TARGET} POST_BUILD
                COMMAND ${CMAKE_COMMAND} -E copy_directory

@@ -59,7 +59,9 @@ void ClockNWorkThread::run()
     int retcode = 0;
     bool isError = true;
     QString output;
-
+    std::string file = FileUtils::getFileName(m_settings.getRemoteFilename());
+    std::string path = StringUtils::remove(m_settings.getRemoteFilename(),file);
+    std::string user = m_settings.getSshUserName();
 #ifdef __WIN32
     std::ostringstream batch;
     batch << "echo y | pscp\\pscp.exe -q -batch -pw \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
@@ -71,13 +73,17 @@ void ClockNWorkThread::run()
 
     FileUtils::deleteFile("windows_ssh_batch.bat");
 #else
-    command << "sshpass -p \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" scp status.htm caja@cbtek.net:/home/caja/cbtek.net/cberry";
+    command << "sshpass -p \""<<ClockNWorkManager::inst().getSessionSSHPassword()<<"\" scp "+file+" "+user+"@"+m_settings.getSshRemoteHostName()+":"+path;
+    //std::cerr << command.str()<<std::endl;
     process.start(QString::fromStdString(command.str()));
+    process.waitForFinished();
 #endif    
     output = (process.readAllStandardError()+" "+process.readAllStandardOutput());
     output.replace("\n"," ");
     isError = (output.contains("error",Qt::CaseInsensitive) ||
                output.contains("refused",Qt::CaseInsensitive) ||
+               output.contains("failed", Qt::CaseInsensitive) ||
+               output.contains("timeout", Qt::CaseInsensitive) ||
                output.contains("not recognized", Qt::CaseInsensitive));
 
     std::string password = ClockNWorkManager::inst().getSessionSSHPassword();

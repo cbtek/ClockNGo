@@ -88,6 +88,27 @@ int ClockNWorkSettings::getSshLocalDBPort() const
     return m_sshLocalDBPort;
 }
 
+void ClockNWorkSettings::setRemoteFilename(const std::string &filename)
+{
+    m_remoteFilename=filename;
+}
+
+
+std::string ClockNWorkSettings::getRemoteFilename() const
+{
+    return m_remoteFilename;
+}
+
+void ClockNWorkSettings::setSshUserName(const std::string &userName)
+{
+    m_sshUsername = userName;
+}
+
+std::string ClockNWorkSettings::getSshUserName() const
+{
+    return m_sshUsername;
+}
+
 
 }}}}//end namespace
 

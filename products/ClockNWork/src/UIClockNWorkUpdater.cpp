@@ -381,19 +381,34 @@ void UIClockNWorkUpdater::onGenerateHTML()
 void UIClockNWorkUpdater::onUploadFile()
 {
     m_ui->m_lblStatus->show();
+    std::string user = m_settings.getSshUserName();
+    std::string pass = ClockNWorkManager::inst().getSessionSSHPassword();
+    std::string url = m_settings.getRemoteFilename();
 
-    if (ClockNWorkManager::inst().getSessionSSHPassword().empty())
+    if (pass.empty())
     {
         m_ui->m_lblStatus->setText("<font style='color:#FFAAAA;font-size:18px;'>SSH Password not set</font>");
-
+        return;
     }
-    else m_ui->m_lblStatus->setText("<font style='color:#FFFFAA;font-size:18px;'>Waiting for connection...</font>");
+    else if (user.empty())
+    {
+        m_ui->m_lblStatus->setText("<font style='color:#FFAAAA;font-size:18px;'>Username invalid</font>");
+        return;
+    }
+    else if (url.empty())
+    {
+        m_ui->m_lblStatus->setText("<font style='color:#FFAAAA;font-size:18px;'>Empty URL Error</font>");
+        return;
+    }
+    else
+    {
+        m_ui->m_lblStatus->setText("<font style='color:#FFFFAA;font-size:18px;'>Waiting for connection...</font>");
+    }
 
     ClockNWorkThread * upload = new ClockNWorkThread(m_settings);
     connect(upload,SIGNAL(failed(QString)),this,SLOT(onUploadFailed(QString)));
     connect(upload,SIGNAL(success()),this,SLOT(onUploadSuccess()));
     upload->start();
-
 }
 
 void UIClockNWorkUpdater::onConfirm(EventType type, QString iconFile)
