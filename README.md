@@ -1,7 +1,4 @@
 # ClockNWork
-Simple application for recording time spent on work-related tasks.
+Simple application for recording time spent on work-related tasks. 
 
-![Alt text](http://www.cbtek.net/git-demos/clocknwork_ss1.png "ClockNWork Screenshot 1")
-
-
-![Alt text](http://www.cbtek.net/git-demos/clocknwork_ss2.png "ClockNWork Screenshot 2")
+[![ClockNWork Demo](http://img.youtube.com/vi/kIz3Wzp8Cd0/0.jpg)](https://www.youtube.com/watch?v=kIz3Wzp8Cd0 "ClockNWork Demo")
